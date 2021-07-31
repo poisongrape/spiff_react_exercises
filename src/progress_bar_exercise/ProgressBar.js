@@ -5,7 +5,6 @@ import ProgressBarFiller from "./ProgressBarFiller";
 const ProgressBar = ({}) => {
   return (
     <div className="progress-bar">
-      PROGRESS BAR
       <ProgressBarFiller />
     </div>
   );
