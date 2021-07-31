@@ -29,3 +29,12 @@
 .button:active {
   border: 3px solid;
 }
+
+.fadeOut {
+  animation: fade 3s linear;
+}
+
+@keyframes fade {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}

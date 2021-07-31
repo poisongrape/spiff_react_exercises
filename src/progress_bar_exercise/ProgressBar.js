@@ -4,10 +4,11 @@ import ProgressBarFiller from "./ProgressBarFiller";
 
 // Progress bar frame.
 const ProgressBar = ({
+  isFinished,
   perc,
 }) => {
   return (
-    <div className="progress-bar">
+    <div className={`progress-bar ${isFinished ? "fadeOut" : ""}`}>
       <ProgressBarFiller perc={perc} />
     </div>
   );

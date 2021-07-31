@@ -31,6 +31,7 @@ const Solution = () => {
   const [finishCount, setFinishCount] = useState(0);
   const [finishTimer, setFinishTimer] = useState();
   const [isStarted, setIsStarted] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
 
   // Effects
 
@@ -62,6 +63,7 @@ const Solution = () => {
       setIsStarted(false);
       setTimer(undefined);
       setFinishTimer(undefined);
+      setIsFinished(true);
     }
   }, [finishCount])
 
@@ -117,7 +119,7 @@ const Solution = () => {
 
   return (
     <React.Fragment>
-      <ProgressBar perc={percentage} />
+      <ProgressBar perc={percentage} isFinished={isFinished} />
       <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick} />
       <Button label="Finish Request" color="red" onClick={handleFinishClick} />
     </React.Fragment>
