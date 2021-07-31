@@ -1,6 +1,7 @@
 import React from "react";
 import Exercise from "../exercise/Exercise";
 import ProgressBar from "./ProgressBar";
+import Button from "./Button";
 
 const ProgressBarExercise = () => {
   return (
@@ -20,6 +21,10 @@ export default ProgressBarExercise;
 
 const Solution = () => {
   return (
-    <ProgressBar />
+    <React.Fragment>
+      <ProgressBar />
+      <Button label="Start Request" />
+      <Button label="Finish Request" />
+    </React.Fragment>
   );
 };
