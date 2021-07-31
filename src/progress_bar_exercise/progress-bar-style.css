@@ -12,3 +12,21 @@
   border-radius: inherit;
   transition: width .2s ease-in;
 }
+
+.button {
+  color: #00c1a6;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  border: 1px solid;
+  padding: 10px;
+}
+
+.button:hover {
+  border: 2px solid;
+}
+
+.button:active {
+  border: 3px solid;
+}
