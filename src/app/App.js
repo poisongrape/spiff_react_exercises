@@ -9,6 +9,7 @@ import ParserExercise      from "../parser_exercise/ParserExercise"
 import ProgressBarExercise from "../progress_bar_exercise/ProgressBarExercise"
 
 import "./App.scss"
+import "../progress_bar_exercise/progress-bar-style.css"
 
 function App() {
   return (
