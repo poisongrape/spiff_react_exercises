@@ -23,8 +23,8 @@ const Solution = () => {
   return (
     <React.Fragment>
       <ProgressBar />
-      <Button label="Start Request" />
-      <Button label="Finish Request" />
+      <Button label="Start Request" color="green" />
+      <Button label="Finish Request" color="red" />
     </React.Fragment>
   );
 };
