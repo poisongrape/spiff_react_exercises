@@ -23,11 +23,17 @@
   margin: 10px;
 }
 
-.button:hover {
+button:disabled,
+button[disabled] {
+  color: rgb(219, 219, 219);
+  background-color: rgb(219, 219, 219);
+}
+
+.button:hover:not([disabled]) {
   border: 2px solid;
 }
 
-.button:active {
+.button:active:not([disabled]) {
   border: 3px solid;
 }
 
