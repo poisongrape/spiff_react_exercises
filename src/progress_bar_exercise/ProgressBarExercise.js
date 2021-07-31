@@ -147,14 +147,13 @@ const Solution = () => {
 
   return (
     <React.Fragment>
-      <p>{percentage}</p>
       <ProgressBar perc={percentage} isFinished={isFinished} />
       <div>
-        <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick} />
+        <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick}/>
         <Button label="Finish Request" color="red" onClick={handleFinishClick} />
       </div>
       <div>
-        <Button label={"Toggle"} onClick={handleToggleClick} />
+        <Button label={"Toggle"} color="grey" onClick={handleToggleClick} disabled={isStarted || isFinished}/>
         <p>{isUsingBreakpoints ? "Using Breakpoints" : "Not Using Breakpoints"}</p>
       </div>
     </React.Fragment>
