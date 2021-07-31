@@ -23,6 +23,7 @@ const Solution = () => {
   // Variables
   const interval = 1000;
   const finishInterval = 100;
+  const breakpoints = [30, 32, 82];
 
   // State
   const [percentage, setPercentage] = useState(0);
@@ -48,9 +49,9 @@ const Solution = () => {
     }
   }, [timer]);
 
-  // Stop timer when it has ran for 15 seconds.
+  // Stop timer when percentage reaches 90.
   useEffect(() => {
-    if (count >= 15 && timer) {
+    if (percentage >= 90 && timer) {
       window.clearInterval(timer);
     }
   }, [count])
@@ -83,8 +84,26 @@ const Solution = () => {
 
     const timerId = window.setInterval(() => {
       setPercentage((prevPercentage) => {
-        return prevPercentage + (90 / 15);
+        let newPercentage;
+
+        for (let i = 0; i < breakpoints.length; i++) {
+          const breakpoint = breakpoints[i];
+          if (breakpoint - 3 <= prevPercentage && prevPercentage <= breakpoint + 3) {
+            if (prevPercentage + 1 > 90) {
+              return 90;
+            }
+
+            return prevPercentage + 2;
+          }
+        }
+
+        if ((prevPercentage + 90 / 15) > 90) {
+          return 90;
+        }
+
+        return prevPercentage + 90 / 15;
       });
+
       setCount((prevCount) => {
         return prevCount + 1;
       });
