@@ -23,7 +23,7 @@ const Solution = () => {
   // Variables
   const interval = 1000;
   const finishInterval = 100;
-  const breakpoints = [30, 32, 82];
+  const breakpoints = [10, 30, 32, 82];
 
   // State
   const [percentage, setPercentage] = useState(0);
@@ -33,6 +33,7 @@ const Solution = () => {
   const [finishTimer, setFinishTimer] = useState();
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [isUsingBreakpoints, setIsUsingBreakpoints] = useState(false);
 
   // Effects
 
@@ -84,16 +85,16 @@ const Solution = () => {
 
     const timerId = window.setInterval(() => {
       setPercentage((prevPercentage) => {
-        let newPercentage;
+        if (isUsingBreakpoints === true) {
+          for (let i = 0; i < breakpoints.length; i++) {
+            const breakpoint = breakpoints[i];
+            if (breakpoint - 3 <= prevPercentage && prevPercentage <= breakpoint + 3) {
+              if (prevPercentage + 1 > 90) {
+                return 90;
+              }
 
-        for (let i = 0; i < breakpoints.length; i++) {
-          const breakpoint = breakpoints[i];
-          if (breakpoint - 3 <= prevPercentage && prevPercentage <= breakpoint + 3) {
-            if (prevPercentage + 1 > 90) {
-              return 90;
+              return prevPercentage + 2;
             }
-
-            return prevPercentage + 2;
           }
         }
 
@@ -136,11 +137,26 @@ const Solution = () => {
     }
   };
 
+  /**
+   * Switch between a progress bar that uses breakpoints and one that
+   * does not use breakpoints.
+   */
+  const handleToggleClick = () => {
+    setIsUsingBreakpoints(!isUsingBreakpoints);
+  };
+
   return (
     <React.Fragment>
+      <p>{percentage}</p>
       <ProgressBar perc={percentage} isFinished={isFinished} />
-      <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick} />
-      <Button label="Finish Request" color="red" onClick={handleFinishClick} />
+      <div>
+        <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick} />
+        <Button label="Finish Request" color="red" onClick={handleFinishClick} />
+      </div>
+      <div>
+        <Button label={"Toggle"} onClick={handleToggleClick} />
+        <p>{isUsingBreakpoints ? "Using Breakpoints" : "Not Using Breakpoints"}</p>
+      </div>
     </React.Fragment>
   );
 };
