@@ -30,6 +30,7 @@ const Solution = () => {
   const [timer, setTimer] = useState();
   const [finishCount, setFinishCount] = useState(0);
   const [finishTimer, setFinishTimer] = useState();
+  const [isStarted, setIsStarted] = useState(false);
 
   // Effects
 
@@ -58,6 +59,9 @@ const Solution = () => {
     if (finishCount >= 10 && finishTimer) {
       window.clearInterval(finishTimer);
       setPercentage(100);
+      setIsStarted(false);
+      setTimer(undefined);
+      setFinishTimer(undefined);
     }
   }, [finishCount])
 
@@ -71,6 +75,9 @@ const Solution = () => {
       // We already started a timer, so do not do anything.
       return;
     }
+
+    setIsStarted(true);
+    setPercentage(0);
 
     const timerId = window.setInterval(() => {
       setPercentage((prevPercentage) => {
@@ -111,7 +118,7 @@ const Solution = () => {
   return (
     <React.Fragment>
       <ProgressBar perc={percentage} />
-      <Button label="Start Request" color="green" onClick={handleStartClick} />
+      <Button label={isStarted ? "Loading..." : "Start Request"} color="green" onClick={handleStartClick} />
       <Button label="Finish Request" color="red" onClick={handleFinishClick} />
     </React.Fragment>
   );
